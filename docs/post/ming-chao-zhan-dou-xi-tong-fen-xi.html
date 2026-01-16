@@ -10,9 +10,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="">
+<meta name="description" content="鸣潮的大致玩法循环就是从获取资源到养成角色再到战斗验证，三步循环，而战斗系统就是战斗验证中的重要组成部分。">
 <meta property="og:title" content="鸣潮战斗系统分析">
-<meta property="og:description" content="">
+<meta property="og:description" content="鸣潮的大致玩法循环就是从获取资源到养成角色再到战斗验证，三步循环，而战斗系统就是战斗验证中的重要组成部分。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://White-Observe.github.io/post/ming-chao-zhan-dou-xi-tong-fen-xi.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/254911829?v=4">
@@ -73,7 +73,87 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"></div>
+<div class="markdown-body" id="postBody"><p>鸣潮的大致玩法循环就是从获取资源到养成角色再到战斗验证，三步循环，而战斗系统就是战斗验证中的重要组成部分。</p>
+<h1>战斗系统的组成</h1>
+<h2>玩家的战斗系统</h2>
+<p>玩家的战斗系统构成非常丰富，每个角色都有的战斗属性包括，自身的独特机制，属性值，装备，普通攻击与重攻击，闪避，协奏能量，延奏与变奏技能，共鸣技能，共鸣解放，共鸣能量，特殊能量，声骸搭配与首位声骸技能，谐度破坏，逆势回击。我们将其分为三类，分别为技能类，资源类，状态类。</p>
+<h3>技能类：</h3>
+<p>该类为玩家在战斗过程中的直接战斗方式，对敌人造成伤害。</p>
+<h4>普通攻击与重攻击：</h4>
+<p>连续点按普攻键会使用角色的一套普通攻击连招，长按普攻键可使用重攻击，普通攻击与重攻击都可积蓄角色的协奏能量与共鸣能量，重攻击提升量较大，有时普通攻击与重攻击可能与角色自身的独特战斗机制相关联组合战斗。</p>
+<h4>闪避：</h4>
+<p>玩家按下闪避键，可闪避敌人攻击，成功闪避后会积蓄角色的协奏能量还可按普攻键使用闪避回击，依据角色机制不同，闪避回击也有不同效果，还可积蓄角色的协奏能量与共鸣能量。</p>
+<h4>延奏与变奏技能：</h4>
+<p>每个角色都有不同的延奏与变奏技能，起到辅助战斗的功能，变奏技能可提升，延奏技能不可提升。</p>
+<h4>共鸣技能：</h4>
+<p>根据角色机制的不同，可与角色的其他战斗属性结合，造成不同效果，使用后有一定的冷却时间。</p>
+<h4>共鸣解放：</h4>
+<p>根据角色机制的不同，可与角色的其他战斗属性结合，造成不同效果，积蓄一定的共鸣能量方可使用，使用后会清空共鸣能量。</p>
+<h4>首位声骸技能：</h4>
+<p>将声骸装配到首位可使用该声骸的装配技能，副位置的声骸的声骸技能不可使用，只会提供属性加成。</p>
+<h4>谐度破坏：</h4>
+<p>特定敌人才会显示，敌人的血条旁会显示当前积蓄的“偏谐值”，玩家的部分攻击命中时会使该敌人的偏谐值积累，满后该敌人会进入失谐状态，角色攻击失谐态势敌人或成功闪避失谐态势敌人攻击后,会弹出技能按钮,点击可以发动强力的谐度破坏,击破失谐态势下的敌人。谐度破坏命中后,打断敌人行为,敌人的偏谐值清空,并陷入名为谐度干涉的受损状态。敌人释放特定技能时或处于特定阶段时,角色将无法为敌人累积偏谐值,此时敌人亦无法进入失谐态势。若此时敌人正处于失谐态势,则移除该效果。当敌人使用特定技能时或处于特定阶段时,将直接暴露失谐态势。</p>
+<h4>逆势回击：</h4>
+<p>在敌人使用特定招式时,会出现破绽光圈,此时使用特定攻击命中敌人,打出逆势回击,不仅可以中断敌人的攻击,还能获得意想不到的效果。</p>
+<h3>资源类：</h3>
+<p>该类为玩家在战斗过程中可消耗与获取的战斗资源。</p>
+<h4>协奏能量：</h4>
+<p>玩家超控角色在战斗中造成伤害和成功闪避都会积蓄协奏能量，协奏能量充满时会在玩家队伍中的其他角色头像上有特殊显示，此时切换角色会触发离场角色的延奏技能并清空该角色的协奏能量和触发进场角色的变奏技能。</p>
+<h4>共鸣能量：</h4>
+<p>对敌人造成伤害和击倒敌人时可积蓄共鸣能量，到达峰值可使用共鸣解放，并清空共鸣能量。</p>
+<h4>特殊能量：</h4>
+<p>依据角色的机制不同，特殊能量的获取与使用也都不同，固定显示在角色血量上方，辅助战斗。</p>
+<h3>状态类：</h3>
+<p>该类为在玩家战斗时提供增益的属性。</p>
+<h4>自身的独特机制：</h4>
+<p>依据角色的定位与设计不同，每个角色都有自己的独特战斗机制，比如有的可能依靠普攻进行输出，有的依靠大招进行输出。</p>
+<h4>属性值：</h4>
+<p>角色的战斗属性，包括了生命值，攻击，防御，暴击，暴击伤害，共鸣效率，其中共鸣效率比较独特，它类似于大招充能效率，影响共鸣能量的获取。</p>
+<h4>装备：</h4>
+<p>主要是武器，为角色提供属性加成，鸣潮中的武器类型分为5类，每个角色只能使用一类武器，每个武器除了提供属性加成又有自己的额外机制辅助战斗，可通过使用相同武器合成提升，最高5级。</p>
+<h4>声骸搭配：</h4>
+<p>每个声骸都有固定的装配消耗点数，角色的装配声骸槽位一共5个，即最多可装配5个声骸，且角色的装配消耗点数也固定，装配声骸的总消耗点数不可超过上限。不同的声骸有不同的装配属性提升和装配技能，声骸会带有一条“合鸣”，相同的合鸣的声骸装配到2个或5个时，可激活相应的合鸣效果，辅助战斗。</p>
+<h2>敌人的战斗系统</h2>
+<p>敌人的战斗系统主要有生命值，共振度，偏谐值，普通攻击，黄圈特殊攻击，红色预警攻击。</p>
+<h3>生命值：</h3>
+<p>敌人共有的属性，玩家对敌人攻击造成伤害会损失敌人的生命值，清空则该敌人被消灭。</p>
+<h3>共振度：</h3>
+<p>部分敌人会有该属性，显示在血量下方，玩家对敌人攻击造成伤害会损失敌人的共振度，清空则该敌人会在一段时间内进入瘫痪状态，无法行动。</p>
+<h3>偏谐值：</h3>
+<p>部分敌人会有该属性，显示在血量左方，玩家对敌人攻击造成伤害会积蓄敌人的偏谐值，积蓄满则敌人进入偏谐状态，此时玩家可使用特定技能对敌人造成大量伤害，并损失共振度。</p>
+<h3>普通攻击：</h3>
+<p>敌人的普通攻击，命中玩家时会对玩家造成伤害并损失生命值，部分敌人还会在攻击命中时，对玩家造成减益效果，玩家可闪避。</p>
+<h3>黄圈特殊攻击：</h3>
+<p>部分的敌人的特殊攻击，使用时会在敌人身上出现黄色的特殊光圈，攻击命中玩家时会对玩家造成伤害并损失生命值，玩家此时使用特定攻击命中敌人时，会打出逆势回击，会中断敌人攻击动作，并损失敌人的共振度。玩家可闪避。</p>
+<h3>红色预警攻击：</h3>
+<p>部分敌人的特殊攻击，使用时会在敌人身上出现红色预警提示,此时玩家使用特定的声 骸技能命中或阻挡敌人,可以打出对策技,不仅可以中断敌人的攻击, 并损失敌人的共振度。玩家可闪避。</p>
+<h1>战斗系统的使用范例</h1>
+<p>此处我们使用初始角色漂泊者衍射与无冠者进行战斗，演示鸣潮战斗系统的运行。先简单介绍一下漂泊者衍射的特殊机制，特殊能量名为【尘微之声】，普通攻击和重击可回复【尘微之声】，消耗50点【尘微之声】可强化共鸣技能，提升输出。共鸣技能为输出技能，向前方发动攻击造成伤害。共鸣解放也为输出技能，攻击前方目标区域，并时目标区域产生爆炸，造成伤害。延奏技能为以下一位登场角色为中心生产停滞区域，持续3秒。变奏技能为攻击敌人造成伤害。这里我们只使用漂泊者一个角色，就不深入延奏与变奏技能。这里我们装配的声骸技能为云闪之鳞，为输出类型的技能，使用时幻化为云闪之鳞对敌人进行连续斩击造成伤害。<br>
+这里我们先死一次，清空角色的各种状态。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a71734cb-95fe-4739-9252-c3a19850e7c8"><img src="https://github.com/user-attachments/assets/a71734cb-95fe-4739-9252-c3a19850e7c8" alt="Image" style="max-width: 100%;"></a></p>
+<p>我们锁定敌人后开始战斗，先用普通攻击与重击积累协奏能量和特殊能量以及共鸣能量，并消减敌人的共振度和生命值积蓄敌人的偏谐值。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d5dc7ae4-741d-4776-b29a-d43026aede54"><img src="https://github.com/user-attachments/assets/d5dc7ae4-741d-4776-b29a-d43026aede54" alt="Image" style="max-width: 100%;"></a></p>
+<p>敌人使用了黄圈特殊攻击，我们普攻进行打断，消减敌人的共振度与积蓄敌人的偏谐值。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/89a0a68d-14f4-43ef-82a1-c4cbc287ae6f"><img src="https://github.com/user-attachments/assets/89a0a68d-14f4-43ef-82a1-c4cbc287ae6f" alt="Image" style="max-width: 100%;"></a></p>
+<p>特殊能量大于50，我们可以使用强化共鸣技能攻击敌人，消减敌人的共振度和生命值与积蓄敌人的偏谐值。使用共鸣技能后会减少特殊能量且技能进入冷却。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/72cb1a42-b5be-43e0-b864-c27d95148e8b"><img src="https://github.com/user-attachments/assets/72cb1a42-b5be-43e0-b864-c27d95148e8b" alt="Image" style="max-width: 100%;"></a></p>
+<p>持续攻击敌人，敌人的共振度消减完后，敌人会进入瘫痪状态，是输出的好时机。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8e161d40-1d26-46af-b9c4-8d2257d1cb87"><img src="https://github.com/user-attachments/assets/8e161d40-1d26-46af-b9c4-8d2257d1cb87" alt="Image" style="max-width: 100%;"></a></p>
+<p>敌人使用各种攻击时我们都可以闪避，闪避成功后还可使用闪避回击消减敌人的共振度和生命值与积蓄敌人的偏谐值。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e21fcea7-8a84-4275-aca9-1580b8764b1d"><img src="https://github.com/user-attachments/assets/e21fcea7-8a84-4275-aca9-1580b8764b1d" alt="Image" style="max-width: 100%;"></a></p>
+<p>共鸣解放的能量充满了，我们可以使用共鸣解放大量消减敌人的共振度和生命值与积蓄敌人的偏谐值，并清空共鸣能量技能进入冷却。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c20fc1b6-d31c-4599-bae0-8b4ce942bd77"><img src="https://github.com/user-attachments/assets/c20fc1b6-d31c-4599-bae0-8b4ce942bd77" alt="Image" style="max-width: 100%;"></a></p>
+<p>在战斗中使用声骸技能，消减敌人的共振度和生命值与积蓄敌人的偏谐值，技能进入冷却。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a3b0a693-3e0a-49e9-88e7-0055e10af907"><img src="https://github.com/user-attachments/assets/a3b0a693-3e0a-49e9-88e7-0055e10af907" alt="Image" style="max-width: 100%;"></a></p>
+<p>敌人使用红色预警技能，我们使用特定攻击可以打出对策技，中断敌人的攻击，消减敌人的共振度和生命值与积蓄敌人的偏谐值。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/07cbf6d3-6858-4bfa-a2d9-a738bac00140"><img src="https://github.com/user-attachments/assets/07cbf6d3-6858-4bfa-a2d9-a738bac00140" alt="Image" style="max-width: 100%;"></a></p>
+<p>敌人的偏谐值积蓄满时会进入失谐状态，此时可使用特定技能消减敌人的共振度和生命值并清空偏谐值。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a75dbf27-4cfc-4339-9797-aa9616e7ca3e"><img src="https://github.com/user-attachments/assets/a75dbf27-4cfc-4339-9797-aa9616e7ca3e" alt="Image" style="max-width: 100%;"></a></p>
+<p>持续消减敌人的生命值，当敌人的生命值清空时则消灭该敌人。</p>
+<h1>总结</h1>
+<p>相比其他同类型的游戏，鸣潮在普通攻击与重击和大小技能上引入了特殊能量和协奏能量的机制，拓展了角色的机制设计广度，增加了游戏的可玩性，并且不是只引入了新机制，各个机制之间也深度融合，使每个角色的战斗机制都不一样。协奏能量与延奏和变奏技能使玩家在战斗中切换角色时不会打断自己的战斗节奏，反而还可以借助他们增加角色的输出，比如今汐与维里奈两人的组合，维里奈满协奏能量切换今汐时的延奏技能可为今汐提供血量回复和伤害加成，而今汐切换维里奈时的延奏技能又可加快今汐的特殊能量获取，使今汐可以在更短时间内打出高额伤害。声骸合鸣可以在原有的属性加成的基础上进一步为角色提供加成，且依据角色的定位的不同，搭配不同的合鸣套装，使角色输出最大化，比如凝夜白霜套和凌冽决断之心的合鸣效果都可为角色提供冰属性伤害加成，不过凝夜白霜是在角色使用普攻和重攻击时提供加成而凌冽决断之心则是为角色的共鸣技能和共鸣解放提供加成，两者显然不一样。<br>
+在战斗中还引入了闪避，共振度，偏谐值等机制，使战斗并不是你打一下我打一下，鼓励玩家进攻，增加游戏的可玩性与刺激。<br>
+丰富发机制是可以增加玩家战斗的体验，不过却也会考验游戏的教程与战斗引导，若引导做的不好，玩家不能在战斗中充分发使用这些机制，不仅白费心血，还可能造成玩家战斗体验的缺失，这对游戏来说是致命的。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
